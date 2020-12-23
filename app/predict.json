@@ -1,0 +1,166 @@
+{
+    "desc": "The totally wireless Powerbeats Pro earphones are built to revolutionize your workouts. With zero wires to hold you back, the adjustable, secure-fit ear hooks are customizable, making comfortable earbuds that are perfect for running or the gym. A reinforced design for sweat and water resistance lets you take it to the next level. Each earbud has a microphone, full volume and track controls, and up to 9 hours of listening time to fuel your training with powerful, balanced sound. HighlightsCompatible with Apple iOS and Android devices Powerbeats Pro features the Apple H1 headphone chip, delivering a faster and more stable wireless connection to your device for extended range and fewer dropouts. The Apple H1 headphone chip is the same chipset leveraged in Apple Airpod Pros.With Audio Sharing, you can pair two sets of Beats headphones or AirPods to one iPhone and enjoy the same song, podcast, or movie along with a friend.*Features hands-free controls via “Hey Siri” on iOS devices, and voice capability with the push of the b button on a variety of compatible devices, you can stay in the zoneClass 1 Bluetooth for extended range and fewer dropoutsOther featuresDual beam-forming microphonesDual optical sensorsMotion-detecting accelerometerSpeech-detecting accelerometerConnectivityApple H1 headphone chipPowerbeats: Class 1 Wireless Bluetooth®Charging Case: Lightning connector*Compatible with all Apple W1 and H1 chip-enabled Beats headphones and AirPods. Works with iPhone 8 or later and iPod touch (7th generation) with the latest version of iOS; and 12.9-inch iPad Pro (2nd generation or later), 11-inch iPad Pro, 10.5-inch iPad Pro, iPad (5th generation or later), iPad Air (3rd generation), and iPad mini (5th generation) with the latest version of iPadOS.",
+    "img": "https://images-na.ssl-images-amazon.com/images/I/61xiWvwJnpL._AC_SY355_.jpg",
+    "name": "Powerbeats Pro Wireless Earphones - Apple H1 Headphone Chip, Class 1 Bluetooth, 9 Hours Of Listening Time, Sweat Resistant Earbuds - Black",
+    "note": "4.4",
+    "opinions": {
+        "ANYTHING": {
+            "percentage": [
+                33.3,
+                33.3,
+                33.3
+            ],
+            "sentiments": [
+                0.2,
+                0.0,
+                -0.2
+            ],
+            "weight": 5.6
+        },
+        "BASS": {
+            "percentage": [
+                82.6,
+                0,
+                17.4
+            ],
+            "sentiments": [
+                0.3,
+                0,
+                -0.1
+            ],
+            "weight": 7.4
+        },
+        "CASE": {
+            "percentage": [
+                37.5,
+                37.5,
+                25.0
+            ],
+            "sentiments": [
+                0.3,
+                0.0,
+                -0.4
+            ],
+            "weight": 5.6
+        },
+        "COUPLE": {
+            "percentage": [
+                0,
+                33.3,
+                66.7
+            ],
+            "sentiments": [
+                0,
+                0.0,
+                -0.0
+            ],
+            "weight": 5.6
+        },
+        "DEVICE": {
+            "percentage": [
+                47.4,
+                42.1,
+                10.5
+            ],
+            "sentiments": [
+                0.2,
+                0.0,
+                -0.0
+            ],
+            "weight": 7.4
+        },
+        "FEEL": {
+            "percentage": [
+                77.8,
+                11.1,
+                11.1
+            ],
+            "sentiments": [
+                0.3,
+                0.0,
+                -0.2
+            ],
+            "weight": 5.6
+        },
+        "MUSIC": {
+            "percentage": [
+                100.0,
+                0,
+                0
+            ],
+            "sentiments": [
+                0.4,
+                0,
+                0
+            ],
+            "weight": 7.4
+        },
+        "PRICE": {
+            "percentage": [
+                84.6,
+                0,
+                15.4
+            ],
+            "sentiments": [
+                0.2,
+                0,
+                -0.1
+            ],
+            "weight": 5.6
+        },
+        "PRODUCT": {
+            "percentage": [
+                71.4,
+                3.6,
+                25.0
+            ],
+            "sentiments": [
+                0.4,
+                0.0,
+                -0.2
+            ],
+            "weight": 11.1
+        },
+        "QUALITY": {
+            "percentage": [
+                100.0,
+                0,
+                0
+            ],
+            "sentiments": [
+                0.4,
+                0,
+                0
+            ],
+            "weight": 18.5
+        },
+        "SIDE": {
+            "percentage": [
+                62.5,
+                0,
+                37.5
+            ],
+            "sentiments": [
+                0.5,
+                0,
+                -0.1
+            ],
+            "weight": 5.6
+        },
+        "VOLUME": {
+            "percentage": [
+                75.0,
+                12.5,
+                12.5
+            ],
+            "sentiments": [
+                0.1,
+                0.0,
+                -0.2
+            ],
+            "weight": 9.3
+        }
+    },
+    "price": "Currently unavailable.",
+    "reviews": "2,940"
+}

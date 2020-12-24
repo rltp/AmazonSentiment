@@ -11,8 +11,7 @@ from app.scrapper import amazonScrapper
 
 EXTERNALS_DIR = os.path.realpath(os.path.join(__file__, '..', 'externals'))
 
-app = Flask(__name__, static_folder="./templates/build/static",
-            template_folder="./templates/build")
+app = Flask(__name__, static_folder="./templates/build/static", template_folder="./templates/build")
 CORS(app)
 
 DRIVER_PATH = {
@@ -23,22 +22,22 @@ DRIVER_PATH = {
 
 @app.route("/test", methods=['POST'])
 def test():
-    render = send_from_directory(EXTERNALS_DIR, 'predict.json')
-    print(render)
-    return render
+    return send_from_directory(EXTERNALS_DIR, 'predict.json')
+
 
 @app.route("/predict", methods=['POST'])
-
 def predict():
     url = request.json['url']
     maxPages = request.json['maxPages']
+
     scrapper = amazonScrapper(url=url, maxpages=maxPages, driver_path=DRIVER_PATH)
     
     product = scrapper.get_product_data()
     reviews = scrapper.get_reviews()
+
     ABSA = AspectsBased(serie=reviews['Comment'])
     opinions = ABSA.identifyOpinions()
-    print(ABSA.aspects, len(reviews))
+    
     return {**product, 'opinions': opinions}
 
 

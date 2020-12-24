@@ -6,17 +6,19 @@ import './App.css';
 import { ReactComponent as Loader } from './assets/loading.svg';
 import { Fragment, useEffect, useState} from 'react';
 import { RecoilRoot, atom, useRecoilState} from 'recoil';
-import { Donut, ResponsiveContainer } from 'britecharts-react';
+import { Donut } from 'britecharts-react';
 
 
-const ENDPOINT = 'http://localhost:5000/predict';
+const ENDPOINT = '/predict';
 
 const State = atom({
 	key: 'State',
 	default: {
 		url: '',
+		maxPages: 30,
 		loading: false,
 		input: null,
+		error: false,
 		data: {
 			opinions:{}
 		}
@@ -40,13 +42,13 @@ const Search = (props) => {
 	const handleInputChange = () => {
 		if (!state.loading && state.input != null) {
 			state.input.parentElement.parentElement.style.marginTop = '50%';
-			setState({...state, url: ''});
+			setState({...state, url: '', error: false});
 		}
 	}
 
 	useEffect(() => {
 		if (!state.loading && state.input != null) state.input.disabled = false;
-	}, [state.data]);
+	}, [state.data, state.error]);
 
 
 	return (
@@ -96,7 +98,6 @@ const Opinion = (props) => {
 
 	const handleMouseOut = () => {
 		setState({ ...state, highlightedSlice: percentageMax, selected: false});
-		console.log(percentageMax)
 	}
 	
 	useEffect(() => {});
@@ -125,24 +126,32 @@ const Result = () => {
 	const [state, setState] = useRecoilState(State);
 
 	const fetchAPI = async () => {
-		console.log("fetch")
+		console.log("Fetching ...");
 		setState({ ...state, loading: true });
-		const response = await fetch(ENDPOINT, {
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			method: 'POST',
-			body: JSON.stringify({ url: state.url, maxPages: 50 })
-		})
 
-		const data = await response.json();
+		try{
+			const response = await fetch(ENDPOINT, {
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				method: 'POST',
+				body: JSON.stringify({ url: state.url, maxPages: state.maxPages })
+			})
 
-		const computed = Object.entries(data.opinions)
-			.sort(([, a], [, b]) => b.weight - a.weight)
-			.reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
-		setState({ ...state, loading: false, data: {...data, opinions: computed} });
-		console.log(state)
+			const data = await response.json();
+
+			const computed = Object.entries(data.opinions)
+				.sort(([, a], [, b]) => b.weight - a.weight)
+				.reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
+
+
+			setState({ ...state, loading: false, data: { ...data, opinions: computed } });
+		}catch(err){
+			console.log(err);
+			setState({...state, loading: false, error: true});
+		}
+		
 	}
 
 	useEffect(() => {
@@ -156,7 +165,7 @@ const Result = () => {
 
 	return (
 		<Fragment>
-			{state.loading && state.url.length > 0 &&
+			{state.loading && state.url.length > 0 && !state.error &&
 				<Fragment>
 					<Loader />
 					<span className="box info">
@@ -165,7 +174,7 @@ const Result = () => {
 					</span>
 				</Fragment>
 			}
-			{!state.loading && state.url.length > 0 &&
+			{!state.loading && state.url.length > 0 && !state.error &&
 				<Fragment>
 					<article className="product">
 						<div className="left">
@@ -177,17 +186,24 @@ const Result = () => {
 							<p>{state.data.desc}</p>
 						</div>
 					</article>
+					{Object.keys(state.data.opinions).length > 0 &&
 					<article className="full-bleed">
 						<div className="opinions">
 							{Object.keys(state.data.opinions).map((opinion) => <Opinion name={opinion} data={state.data.opinions[opinion]} />)}
 						</div>
-						{Object.keys(state.data.opinions).length == 0 &&
-							<div className="box warn">
-								<h1>Aucun opinion detecté 😟</h1>
-							</div>
-						}
 					</article>
+					}
+					{Object.keys(state.data.opinions).length == 0 &&
+						<div className="box warn">
+							<h1>Aucun opinion detecté 😟</h1>
+						</div>
+					}
 				</Fragment>
+			}
+			{state.error &&
+				<div className="box warn">
+					<h1>A non-Amazonian product 😟</h1>
+				</div>
 			}
 		</Fragment>
 	);

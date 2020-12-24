@@ -9,10 +9,11 @@ import pandas as pd
 from app.ABSA import AspectsBased
 from app.scrapper import amazonScrapper
 
-app = Flask(__name__)
-CORS(app)
+EXTERNALS_DIR = os.path.realpath(os.path.join(__file__, '..', 'externals'))
 
-EXTERNALS_DIR = os.path.realpath(os.path.join( __file__, '..', 'externals' ))
+app = Flask(__name__, static_folder="./templates/build/static",
+            template_folder="./templates/build")
+CORS(app)
 
 DRIVER_PATH = {
     'Linux' : EXTERNALS_DIR + '/chromdriver.unix',
@@ -40,9 +41,10 @@ def predict():
     print(ABSA.aspects, len(reviews))
     return {**product, 'opinions': opinions}
 
+
 @app.route("/")
 def render():
-    return render_template('templates/index.html')
+    return render_template('index.html')
 
 
 if __name__ == "__main__":
